@@ -11,6 +11,7 @@
 
     <modules>
         <module>gmanage-base</module>
+        <module>login</module>
     </modules>
 
     <parent>
@@ -32,6 +33,11 @@
             <dependency>
                 <groupId>com.glaum</groupId>
                 <artifactId>gmanage-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.glaum</groupId>
+                <artifactId>login</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

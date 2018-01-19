@@ -5,3 +5,6 @@
 gmanage.iml
 gmanage-base/gmanage-base.iml
 gmanage-base/target/**
+login/login.iml
+login/target/**
+**.iml

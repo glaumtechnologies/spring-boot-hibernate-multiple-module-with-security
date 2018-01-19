@@ -1,0 +1,76 @@
+=  spring-boot-hibernate-multiple-module-with-security
+
+This projects contains Spring boot, Spring security login and logout, Multiple view resolvers, Html, Thymleaf integration, Hibernate integration and Maven multiple modules.
+Main intention of this project is to quickly start a complex java spring web application project without worrying about basic setup. We hope this project will fulfill your needs. We welcome contributors.
+
+We decoupled the dependencies between different features of this project. So we have created different branches with each unique features. If you want a specific feature with Spring boot basic integration. You can clone only what you need.
+
+= Modules
+=== gmanage-base
+ * Spring basic configuration
+ * Hibernate integration
+ * Logging
+ * Multiple View resolvers
+ * Thymleaf integration
+
+=== login
+ * Login and Logout
+
+
+
+= Local environment setup
+
+* From the root directory run the following command
+
+[source,text,indent=0]
+----
+mvn install
+----
+
+
+
+* If you use Intellij, It should have detected it as Spring boot application and you should able to see run configuration for this. Otherwise run the below command from the root directory.
+
+[source,text,indent=0]
+----
+mvn spring-boot:run
+----
+
+
+* Now you have started the application successfully. We have created in-built test endpoints as follows.
+  
+[source,text,indent=0]
+----
+http://localhost:8080/ - Verify Spring boot and Controller mappings.
+http://localhost:8080/html - Verify View resolvers and Controller response.
+http://localhost:8080/database - Verify Hibernate and database configuration.
+http://localhost:8080/login - Simple html login form with Login feature and Verify Thymleaf Integration.
+http://localhost:8080/home - Simple html file with Logout feature.
+----
+
+* If you face any issue during the application startup. Please check the below points. If it is not helpful, please create an issue in this repository or notify us.
+
+[source,text,indent=0]
+----
+- Check database configuration in "application.properties"
+- Verify the database table structure matches with Hibernate Entity classes
+----
+
+= Contributors
+
+ Stay tuned :)
+
+= Upcoming Features
+
+* Authorization
+* User Registration
+* Forgot Password
+* Remember me
+
+= Report
+
+image:https://www.visitportsmouth.co.uk/dbimgs/icon_facebook.png["Glaum Facebook", link="https://www.facebook.com/glaum2009/"]
+
+image:https://www.poolcoversinc.com/Portals/_default/Skins/poolcover-responsive/images/Twitter-icon.png["Glaum Twitter", link="https://twitter.com/GlaumTech"]
+
+image:https://eus-www.sway-cdn.com/18151175205_Content/WebBadgeIcon.png["Glaum Website", link="http://glaum.in"]
