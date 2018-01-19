@@ -1,0 +1,7 @@
+/target/
+.project
+.settings/
+.idea/**
+gmanage.iml
+gmanage-base/gmanage-base.iml
+gmanage-base/target/**
