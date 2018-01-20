@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Registration</h1>
+<h2 th:if="${not #strings.isEmpty(message)}">
+    <span th:text="'Message: ' + ${message}"></span>
+</h2>
+<form name='registration' action="#" th:action="@{/registration}" th:object="${user}" method='POST'>
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type='text' th:field="*{username}" value=''/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' th:field="*{password}" value='' /></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type='text' th:field="*{email}" value=''/></td>
+        </tr>
+        <tr>
+            <td><input name="submit" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

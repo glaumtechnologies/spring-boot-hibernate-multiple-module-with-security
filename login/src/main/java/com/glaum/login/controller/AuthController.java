@@ -21,7 +21,7 @@ public class AuthController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
-    public String login(@RequestParam(value = "error", required = false) boolean error, Map<String, Object> model, HttpSession session) throws IOException {
+    public String login(@RequestParam(value = "error", required = false) boolean error, Map<String, Object> model) throws IOException {
         if(error) {
             model.put("message", "Login failed. Please check username and password.");
         }

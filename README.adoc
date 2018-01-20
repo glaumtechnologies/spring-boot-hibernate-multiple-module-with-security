@@ -15,6 +15,9 @@ We decoupled the dependencies between different features of this project. So we 
 
 === login
  * Login and Logout
+ * Registration
+ * Password Encoder
+ * Form Validation
 
 
 
@@ -46,6 +49,8 @@ http://localhost:8080/html - Verify View resolvers and Controller response.
 http://localhost:8080/database - Verify Hibernate and database configuration.
 http://localhost:8080/login - Simple html login form with Login feature and Verify Thymleaf Integration.
 http://localhost:8080/home - Simple html file with Logout feature.
+http://localhost:8080/registration - Simple user role registration form
+http://localhost:8080/registration/admin - Simple admin role registration form
 ----
 
 * If you face any issue during the application startup. Please check the below points. If it is not helpful, please create an issue in this repository or notify us.
@@ -63,7 +68,6 @@ http://localhost:8080/home - Simple html file with Logout feature.
 = Upcoming Features
 
 * Authorization
-* User Registration
 * Forgot Password
 * Remember me
 
