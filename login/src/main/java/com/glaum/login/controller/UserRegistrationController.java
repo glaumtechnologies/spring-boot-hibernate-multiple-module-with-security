@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
@@ -36,14 +37,16 @@ public class UserRegistrationController {
     }
 
     @RequestMapping(value={"/registration"}, method = RequestMethod.POST, consumes = APPLICATION_FORM_URLENCODED_VALUE)
-    public String userCreate(@ModelAttribute User user, Map<String, Object> modelMap, Model model) throws IOException {
+    public String userCreate(@ModelAttribute User user, Map<String, Object> modelMap,
+                             Model model,
+                             HttpServletRequest httpServletRequest) throws IOException {
         boolean isSuccess = userRegistrationService.createUser(user);
         LOGGER.info("User Registration isSuccess = "+ isSuccess);
         if(!isSuccess) {
             modelMap.put("message", "Registration failed. Please check username.");
             return registration(model, modelMap);
         } else {
-            return authController.login(false, null);
+            return authController.login(false, null, httpServletRequest);
         }
     }
 
@@ -54,14 +57,16 @@ public class UserRegistrationController {
     }
 
     @RequestMapping(value={"/registration/admin"}, method = RequestMethod.POST, consumes = APPLICATION_FORM_URLENCODED_VALUE)
-    public String adminCreate(@ModelAttribute User user, Map<String, Object> modelMap, Model model) throws IOException {
+    public String adminCreate(@ModelAttribute User user, Map<String, Object> modelMap,
+                              Model model,
+                              HttpServletRequest httpServletRequest) throws IOException {
         boolean isSuccess = userRegistrationService.createAdmin(user);
         LOGGER.info("User Admin Registration isSuccess = "+ isSuccess);
         if(!isSuccess) {
             modelMap.put("message", "Registration failed. Please check username.");
             return registrationAdmin(model, modelMap);
         } else {
-            return authController.login(false, null);
+            return authController.login(false, null, httpServletRequest);
         }
 
 

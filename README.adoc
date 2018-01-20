@@ -18,7 +18,7 @@ We decoupled the dependencies between different features of this project. So we 
  * Registration
  * Password Encoder
  * Form Validation
-
+ * Authorization (Roles and Privilege)
 
 
 = Local environment setup
@@ -51,6 +51,8 @@ http://localhost:8080/login - Simple html login form with Login feature and Veri
 http://localhost:8080/home - Simple html file with Logout feature.
 http://localhost:8080/registration - Simple user role registration form
 http://localhost:8080/registration/admin - Simple admin role registration form
+http://localhost:8080/registration/customer/ - Access only for user have "ADMIN" role.
+http://localhost:8080/registration/account/ - Access only for user have "USER" role.
 ----
 
 * If you face any issue during the application startup. Please check the below points. If it is not helpful, please create an issue in this repository or notify us.
@@ -67,9 +69,9 @@ http://localhost:8080/registration/admin - Simple admin role registration form
 
 = Upcoming Features
 
-* Authorization
 * Forgot Password
 * Remember me
+* Exception Handling
 
 = Report
 

@@ -1,6 +1,7 @@
 package com.glaum.login.configuration;
 
 import com.glaum.login.repository.UserDao;
+import com.glaum.login.util.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,11 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Note url configuration order matters.
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/registration/**").permitAll();
+        http.authorizeRequests().antMatchers("/customer/**").hasRole(RoleEnum.ROLE_ADMIN.getRole());
+        http.authorizeRequests().antMatchers("/account/**").hasRole(RoleEnum.ROLE_USER.getRole());
         http.authorizeRequests().anyRequest().authenticated()
                 .and().httpBasic()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll();
 
-        http.logout().logoutSuccessUrl("/login");
+        http.logout().clearAuthentication(true).deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/login");
         http.exceptionHandling().accessDeniedPage("/accessdenied");
     }
 
