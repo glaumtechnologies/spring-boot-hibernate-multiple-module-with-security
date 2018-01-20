@@ -19,6 +19,8 @@ We decoupled the dependencies between different features of this project. So we 
  * Password Encoder
  * Form Validation
  * Authorization (Roles and Privilege)
+ * CSRF Token Integration (Blocks security vulnerabilities)
+ * "Remember Me"
 
 
 = Local environment setup
@@ -69,9 +71,9 @@ http://localhost:8080/registration/account/ - Access only for user have "USER" r
 
 = Upcoming Features
 
-* Forgot Password
-* Remember me
 * Exception Handling
+* OAuth Integration
+* Forgot Password
 
 = Report
 

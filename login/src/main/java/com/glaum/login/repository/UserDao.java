@@ -5,6 +5,7 @@ import com.glaum.login.entity.User;
 import com.glaum.login.util.RoleEnum;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -31,7 +32,8 @@ public class UserDao {
         Query query = entityManager.createQuery("from User where username = ?");
         query.setParameter(1, username.toLowerCase());
         Optional<User> optional = query.getResultList().stream().findFirst();
-        return optional.get();
+
+        return optional.orElse(null);
     }
 
     public int createUser(com.glaum.login.model.User user) {

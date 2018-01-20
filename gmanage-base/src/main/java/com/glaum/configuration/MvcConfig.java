@@ -1,7 +1,9 @@
 package com.glaum.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -10,6 +12,8 @@ import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
@@ -56,6 +60,27 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         viewResolver.setViewNames(new String[] { "th_*" });
         viewResolver.setOrder(0);
         return viewResolver;
+    }
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+
+        return dataSource;
     }
 
 }

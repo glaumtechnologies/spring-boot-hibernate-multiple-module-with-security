@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>Admin Home Page
+
+<form action="/logout" id="logout" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</form>
+<a href="#" onclick="document.getElementById('logout').submit();">Logout</a>
+</body>
+</html>
