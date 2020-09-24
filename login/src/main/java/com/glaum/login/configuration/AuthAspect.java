@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.glaum.login.entity.permission;
-import com.glaum.login.service.AuthorizationImpl;
 import com.google.common.collect.Lists;
 
 import groovy.util.logging.Slf4j;
@@ -27,8 +26,7 @@ import groovy.util.logging.Slf4j;
 @Aspect
 @Component
 public class AuthAspect {
-@Autowired
-   AuthorizationImpl authBean;
+
 
 
    
