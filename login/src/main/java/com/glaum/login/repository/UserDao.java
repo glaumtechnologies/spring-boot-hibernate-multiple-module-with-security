@@ -11,9 +11,15 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Tuple;
 import javax.transaction.Transactional;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.glaum.login.util.RoleEnum.ROLE_ADMIN;
 import static com.glaum.login.util.RoleEnum.ROLE_USER;
@@ -42,6 +48,23 @@ public class UserDao {
 
     public int creatAdmin(com.glaum.login.model.User user) {
         return create(user, ROLE_ADMIN);
+    }
+    
+    public Map<String, Integer> findUserPermission(int userid) {
+       Query query = entityManager.createNativeQuery("select p.bit,p.name  \n"
+       		+ "   FROM user u  LEFT JOIN permission p  ON u.permissionid & p.bit\n"
+       		+ " WHERE u.id =?");
+        query.setParameter(1,userid);
+        List<Object[]> resultList = query.getResultList();
+        Map<String,Integer> mapofper= new HashMap<String, Integer>();
+        for (Object[] ob : resultList){
+        	
+            String key = (String)ob[1];
+            int value = (int) ob[0];
+            mapofper.put(key,value);
+        	}
+        return mapofper;
+       
     }
 
 
