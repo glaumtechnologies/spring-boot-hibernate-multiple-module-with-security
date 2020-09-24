@@ -24,6 +24,8 @@ public class User {
     private String password;
     @Column(name = "username")
     private String username;
+    @Column(name="permissionid")
+    private int permissionid;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(
             name = "user_id", referencedColumnName = "id"),
@@ -72,5 +74,15 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    
+    public int getpermissionid()
+    {
+    	return permissionid;
+    }
+    
+    public void setpermissionid(int permissionid)
+    {
+    	this.permissionid=permissionid;
     }
 }
