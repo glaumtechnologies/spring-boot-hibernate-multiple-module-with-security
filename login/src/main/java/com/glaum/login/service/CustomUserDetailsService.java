@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,8 +49,14 @@ public class CustomUserDetailsService implements UserDetailsService {
        permission per=new permission();
        per=perDAO.findpermissionidByname(username);
        
+       Map<String, Integer> mapoduserper=userDao.findUserPermission(user.getId());
+       
        httpsessionobj.setAttribute("permissionval", perobj);
        httpsessionobj.setAttribute("roleid", user.getpermissionid());
+       httpsessionobj.setAttribute("userpermissiondetails", mapoduserper);
+       
+       
+
       
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 true, true, true, true, roles);
