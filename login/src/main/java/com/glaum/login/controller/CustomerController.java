@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.glaum.login.configuration.Authorized;
-import com.glaum.login.entity.permission;
+
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -39,14 +42,14 @@ public class CustomerController {
     //@PreAuthorize("hasPermission('customer', #httpSession)")
     @RequestMapping(value={"/customer"}, method = RequestMethod.GET)
     @Authorized(keys = "view_dashboard")
-    public String customer(HttpSession httpSession,HttpServletRequest request,HttpServletResponse res) throws IOException {
+    public String customer() throws IOException {
     	
         return "admin_customer";
     }
     
     @RequestMapping(value={"/quote_delete"}, method = RequestMethod.GET)
     @Authorized(keys = {"quote_delete","quote_read","quote_create"})
-    public String customerdel(HttpSession httpSession,HttpServletRequest request,HttpServletResponse res) throws IOException {
+    public String customerdel() throws IOException {
     	
         return "admin_customer";
     }
@@ -54,20 +57,14 @@ public class CustomerController {
     @RequestMapping(value={"/getuserpermission"}, method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @Authorized(keys = {"quote_delete","quote_read","quote_create"})
     @ResponseBody
-    public Map<String, Integer> fetchuserpermission(HttpSession httpSession,HttpServletRequest request,HttpServletResponse res) throws IOException {
-    	Map<String,Integer> mapofper= new HashMap<String, Integer>();
-    	
-    	for (Field f : httpSession.getClass().getDeclaredFields()) {
-            f.setAccessible(true);
-            Object o;
-            try {
-               HttpSession s= (HttpSession) f.get(httpSession);	              
-               mapofper= (Map<String, Integer>) s.getAttribute("userpermissiondetails");
-            } catch (Exception e) {
-                o = e;
-            }	           
-        }
-        return mapofper;
+    public Map<String, Integer> fetchuserpermission() throws IOException {
+    	Map<String,Integer> mapofpermission= new HashMap<String, Integer>();
+    	 RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+         HttpServletRequest httprequest = ((ServletRequestAttributes) requestAttributes).getRequest();      
+         HttpSession session = httprequest.getSession();
+         mapofpermission= (Map<String, Integer>) session.getAttribute("userpermissiondetails");
+
+        return mapofpermission;
     }
     
    
