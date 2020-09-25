@@ -52,18 +52,18 @@ public class UserDao {
     
     public Map<String, Integer> findUserPermission(int userid) {
        Query query = entityManager.createNativeQuery("select p.bit,p.name  \n"
-       		+ "   FROM user u  LEFT JOIN permission p  ON u.permissionid & p.bit\n"
+       		+ "   FROM user u  LEFT JOIN Permission p  ON u.role_id & p.bit\n"
        		+ " WHERE u.id =?");
         query.setParameter(1,userid);
         List<Object[]> resultList = query.getResultList();
-        Map<String,Integer> mapofper= new HashMap<String, Integer>();
-        for (Object[] ob : resultList){
+        Map<String,Integer> mapofpermission= new HashMap<String, Integer>();
+        for (Object[] object : resultList){
         	
-            String key = (String)ob[1];
-            int value = (int) ob[0];
-            mapofper.put(key,value);
+            String key = (String)object[1];
+            int value = (int) object[0];
+            mapofpermission.put(key,value);
         	}
-        return mapofper;
+        return mapofpermission;
        
     }
 
