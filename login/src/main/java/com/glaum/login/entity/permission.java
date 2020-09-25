@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "permission")
-public class permission {
+@Table(name = "Permission")
+public class Permission {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
