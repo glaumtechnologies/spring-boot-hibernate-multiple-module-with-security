@@ -19,29 +19,30 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.glaum.login.entity.permission;
+import com.glaum.login.entity.Permission;
+
 
 
 @Transactional
 @Repository
-public class permissionDAO {
+public class PermissionDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
 
 
-	    public permission findpermissionidByname(String name) {
-	        Query query = entityManager.createQuery("from permission where name = ?");
+	    public Permission findpermissionidByname(String name) {
+	        Query query = entityManager.createQuery("from Permission where name = ?");
 	        query.setParameter(1, name.toLowerCase());
-	        Optional<permission> optional = query.getResultList().stream().findFirst();
+	        Optional<Permission> optional = query.getResultList().stream().findFirst();
 
 	        return optional.orElse(null);
 	    }
 	    
-	    public List<permission> findpermissionid() {
-	        Query query = entityManager.createQuery("from permission");
+	    public List<Permission> findpermissionid() {
+	        Query query = entityManager.createQuery("from Permission");
 
-	        List<permission> listobj =(List<permission>) query.getResultList().stream().collect(Collectors.toList());
+	        List<Permission> listobj =(List<Permission>) query.getResultList().stream().collect(Collectors.toList());
 
 	        return listobj;
 	    }
