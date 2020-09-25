@@ -2,9 +2,9 @@ package com.glaum.login.service;
 
 import com.glaum.login.entity.Role;
 import com.glaum.login.entity.User;
-import com.glaum.login.entity.permission;
+import com.glaum.login.entity.Permission;
+import com.glaum.login.repository.PermissionDAO;
 import com.glaum.login.repository.UserDao;
-import com.glaum.login.repository.permissionDAO;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     UserDao userDao;
 
     @Autowired
-    permissionDAO perDAO;
+    PermissionDAO perDAO;
     
     @Autowired
     HttpSession httpsessionobj;
@@ -39,21 +39,19 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         List<GrantedAuthority> roles = Lists.newArrayList();
         
-       roles.add(new SimpleGrantedAuthority(String.valueOf(user.getpermissionid())));
+       roles.add(new SimpleGrantedAuthority(String.valueOf(user.getRoleId())));
        for(Role role : user.getRoles()) {
             roles.add(new SimpleGrantedAuthority(role.getRole()));
             
         }
        
-       List<permission> perobj=perDAO.findpermissionid();
-       permission per=new permission();
-       per=perDAO.findpermissionidByname(username);
+       List<Permission> listofpermissionobj=perDAO.findpermissionid();
        
-       Map<String, Integer> mapoduserper=userDao.findUserPermission(user.getId());
+       Map<String, Integer> mapofuserpermission=userDao.findUserPermission(user.getId());
        
-       httpsessionobj.setAttribute("permissionval", perobj);
-       httpsessionobj.setAttribute("roleid", user.getpermissionid());
-       httpsessionobj.setAttribute("userpermissiondetails", mapoduserper);
+       httpsessionobj.setAttribute("permissionval", listofpermissionobj);
+       httpsessionobj.setAttribute("roleid", user.getRoleId());
+       httpsessionobj.setAttribute("userpermissiondetails", mapofuserpermission);
        
        
 
