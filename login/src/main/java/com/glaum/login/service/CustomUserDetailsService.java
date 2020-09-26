@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     UserDao userDao;
 
     @Autowired
-    PermissionDAO perDAO;
+    PermissionDAO permissionDao;
     
     @Autowired
     HttpSession httpsessionobj;
@@ -45,12 +45,12 @@ public class CustomUserDetailsService implements UserDetailsService {
             
         }
        
-       List<Permission> listofpermissionobj=perDAO.findpermissionid();
+       List<Permission> listofpermissionobj=permissionDao.getPermissions();
        
        Map<String, Integer> mapofuserpermission=userDao.findUserPermission(user.getId());
        
-       httpsessionobj.setAttribute("permissionval", listofpermissionobj);
-       httpsessionobj.setAttribute("roleid", user.getRoleId());
+       httpsessionobj.setAttribute("userPermissions", listofpermissionobj);
+       httpsessionobj.setAttribute("userRole", user.getRoleId());
        httpsessionobj.setAttribute("userpermissiondetails", mapofuserpermission);
        
        
