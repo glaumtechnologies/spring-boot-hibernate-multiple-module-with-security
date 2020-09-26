@@ -31,7 +31,7 @@ public class PermissionDAO {
 
 
 
-	    public Permission findpermissionidByname(String name) {
+	    public Permission findPermissionByName(String name) {
 	        Query query = entityManager.createQuery("from Permission where name = ?");
 	        query.setParameter(1, name.toLowerCase());
 	        Optional<Permission> optional = query.getResultList().stream().findFirst();
@@ -39,7 +39,7 @@ public class PermissionDAO {
 	        return optional.orElse(null);
 	    }
 	    
-	    public List<Permission> findpermissionid() {
+	    public List<Permission> findPermissionId() {
 	        Query query = entityManager.createQuery("from Permission");
 
 	        List<Permission> listobj =(List<Permission>) query.getResultList().stream().collect(Collectors.toList());
