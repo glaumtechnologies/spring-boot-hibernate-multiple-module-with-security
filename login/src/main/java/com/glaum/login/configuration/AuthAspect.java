@@ -58,6 +58,8 @@ public class AuthAspect {
 					}
 				}
 			}
+			if(authallowuser)
+				break;
 		}
 
 		if (!authallowuser)
