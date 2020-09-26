@@ -57,7 +57,7 @@ public class CustomerController {
     @RequestMapping(value={"/getuserpermission"}, method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @Authorized(keys = {"quote_delete","quote_read","quote_create"})
     @ResponseBody
-    public Map<String, Integer> fetchuserpermission() throws IOException {
+    public Map<String, Integer> fetchUserPermission() throws IOException {
     	Map<String,Integer> mapofpermission= new HashMap<String, Integer>();
     	 RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
          HttpServletRequest httprequest = ((ServletRequestAttributes) requestAttributes).getRequest();      
