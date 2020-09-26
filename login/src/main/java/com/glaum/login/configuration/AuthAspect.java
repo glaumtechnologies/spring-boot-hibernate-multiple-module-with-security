@@ -45,8 +45,8 @@ public class AuthAspect {
 		HttpServletResponse httpresponse = ((ServletRequestAttributes) requestAttributes).getResponse();
 		HttpSession session = httprequest.getSession();
 
-		roleid = (int) session.getAttribute("roleid");
-		lstofpermission = (List<com.glaum.login.entity.Permission>) session.getAttribute("permissionval");
+		roleid = (int) session.getAttribute("userRole");
+		lstofpermission = (List<com.glaum.login.entity.Permission>) session.getAttribute("userPermissions");
 
 		for (String permissionreq : arrayofpermission) {
 			for (Permission availablepermission : lstofpermission) {
