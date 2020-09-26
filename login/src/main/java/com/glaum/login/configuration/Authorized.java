@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD) // can use in method only.
 public @interface Authorized {
 
-  public boolean enabled() default true;
+  //public boolean enabled() default true;
 
-public String[] keys();
+    public String[] keys();
 
 
 }
