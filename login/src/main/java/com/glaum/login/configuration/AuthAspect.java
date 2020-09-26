@@ -54,6 +54,7 @@ public class AuthAspect {
 					bit = availablepermission.getbit();
 					if ((roleid & bit) == bit) {
 						authallowuser = true;
+						break;
 					}
 				}
 			}
