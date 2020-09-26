@@ -39,7 +39,7 @@ public class PermissionDAO {
 	        return optional.orElse(null);
 	    }
 	    
-	    public List<Permission> findPermissionId() {
+	    public List<Permission> getPermissions() {
 	        Query query = entityManager.createQuery("from Permission");
 
 	        List<Permission> listobj =(List<Permission>) query.getResultList().stream().collect(Collectors.toList());
